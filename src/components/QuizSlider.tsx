@@ -58,7 +58,7 @@ const QuizSlider = () => {
           </div>
         </div>
 
-        <div className="relative min-h-[510px] sm:min-h-[700px] mb-6 overflow-hidden">
+        <div className="relative min-h-[530px] sm:min-h-[700px] mb-6 overflow-hidden">
           <Card
             className={cn(
               "rounded-lg border bg-card text-card-foreground shadow-sm absolute w-full h-full p-4 sm:p-6 flex flex-col transition-all duration-400 ease-in-out",
@@ -81,7 +81,7 @@ const QuizSlider = () => {
               {showAnswer && (
                 <div
                   className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-y-auto mb-4"
-                  style={{ maxHeight: "600px", minHeight: "250px" }}
+                  style={{ maxHeight: "630px", minHeight: "250px" }}
                 >
                   <p className="text-base sm:text-xl font-medium text-quiz-purple">
                     {currentQuestion.answer}

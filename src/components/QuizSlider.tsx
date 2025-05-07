@@ -55,7 +55,7 @@ const QuizSlider = () => {
           </div>
         </div>
 
-        <div className="relative h-[320px] sm:h-96 mb-6 overflow-hidden">
+        <div className="relative min-h-[320px] sm:min-h-[400px] mb-6 overflow-hidden">
           <Card 
             className={cn(
               "absolute w-full h-full p-4 sm:p-6 flex flex-col transition-all duration-400 ease-in-out",
@@ -72,57 +72,56 @@ const QuizSlider = () => {
               </h2>
               
               {showAnswer ? (
-                <div className="mt-auto bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-y-auto">
+                <div className="mt-auto bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-y-auto max-h-[200px] sm:max-h-[250px]">
                   <p className="text-base sm:text-xl font-medium text-quiz-purple">{currentQuestion.answer}</p>
                 </div>
               ) : (
-                <div className="mt-auto">
+                <div className="mt-auto flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                   <Button 
                     onClick={toggleAnswer}
                     className="bg-quiz-purple hover:bg-purple-700 text-white"
                   >
                     Reveal Answer
                   </Button>
+                  
+                  <div className="flex gap-2 items-center">
+                    <Button 
+                      onClick={handlePrevious}
+                      disabled={currentQuestionIndex === 0}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <ChevronLeft className="h-4 w-4 mr-1" />
+                      <span className="text-sm">Prev</span>
+                    </Button>
+                    
+                    <Button 
+                      onClick={handleNext}
+                      disabled={currentQuestionIndex === totalQuestions - 1}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <span className="text-sm">Next</span>
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </div>
                 </div>
               )}
             </div>
+            
+            {/* Question indicators */}
+            <div className="flex justify-center gap-1 mt-6">
+              {quizQuestions.map((_, index) => (
+                <div 
+                  key={index} 
+                  className={cn(
+                    "h-2 w-2 rounded-full",
+                    index === currentQuestionIndex ? "bg-quiz-purple" : "bg-gray-200"
+                  )}
+                ></div>
+              ))}
+            </div>
           </Card>
-        </div>
-
-        <div className="flex justify-between items-center w-full">
-          <Button 
-            onClick={handlePrevious}
-            disabled={currentQuestionIndex === 0}
-            variant="outline"
-            size="sm"
-            className="flex items-center gap-1"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            <span className="sm:inline">Previous</span>
-          </Button>
-
-          <div className="flex gap-1">
-            {quizQuestions.map((_, index) => (
-              <div 
-                key={index} 
-                className={cn(
-                  "h-2 w-2 rounded-full",
-                  index === currentQuestionIndex ? "bg-quiz-purple" : "bg-gray-200"
-                )}
-              ></div>
-            ))}
-          </div>
-
-          <Button 
-            onClick={handleNext}
-            disabled={currentQuestionIndex === totalQuestions - 1}
-            variant="outline"
-            size="sm"
-            className="flex items-center gap-1"
-          >
-            <span className="sm:inline">Next</span>
-            <ChevronRight className="h-4 w-4" />
-          </Button>
         </div>
       </div>
     </div>

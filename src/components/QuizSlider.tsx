@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { QuizQuestion, quizQuestions } from "../data/quizData";
 import { Button } from "@/components/ui/button";
@@ -71,42 +70,20 @@ const QuizSlider = () => {
                 {currentQuestion.question}
               </h2>
               
-              {showAnswer ? (
-                <div className="mt-auto bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-y-auto max-h-[200px] sm:max-h-[250px]">
+              {showAnswer && (
+                <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-y-auto max-h-[200px] sm:max-h-[250px] mb-4">
                   <p className="text-base sm:text-xl font-medium text-quiz-purple">{currentQuestion.answer}</p>
                 </div>
-              ) : (
-                <div className="mt-auto flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-                  <Button 
-                    onClick={toggleAnswer}
-                    className="bg-quiz-purple hover:bg-purple-700 text-white"
-                  >
-                    Reveal Answer
-                  </Button>
-                  
-                  <div className="flex gap-2 items-center">
-                    <Button 
-                      onClick={handlePrevious}
-                      disabled={currentQuestionIndex === 0}
-                      variant="outline"
-                      size="sm"
-                    >
-                      <ChevronLeft className="h-4 w-4 mr-1" />
-                      <span className="text-sm">Prev</span>
-                    </Button>
-                    
-                    <Button 
-                      onClick={handleNext}
-                      disabled={currentQuestionIndex === totalQuestions - 1}
-                      variant="outline"
-                      size="sm"
-                    >
-                      <span className="text-sm">Next</span>
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </Button>
-                  </div>
-                </div>
               )}
+
+              <div className="mt-auto flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                <Button 
+                  onClick={toggleAnswer}
+                  className="bg-quiz-purple hover:bg-purple-700 text-white"
+                >
+                  {showAnswer ? "Hide Answer" : "Reveal Answer"}
+                </Button>
+              </div>
             </div>
             
             {/* Question indicators */}
@@ -122,6 +99,29 @@ const QuizSlider = () => {
               ))}
             </div>
           </Card>
+        </div>
+
+        {/* Navigation buttons outside the Card, always visible */}
+        <div className="flex justify-center gap-2">
+          <Button 
+            onClick={handlePrevious}
+            disabled={currentQuestionIndex === 0}
+            variant="outline"
+            size="sm"
+          >
+            <ChevronLeft className="h-4 w-4 mr-1" />
+            <span className="text-sm">Prev</span>
+          </Button>
+          
+          <Button 
+            onClick={handleNext}
+            disabled={currentQuestionIndex === totalQuestions - 1}
+            variant="outline"
+            size="sm"
+          >
+            <span className="text-sm">Next</span>
+            <ChevronRight className="h-4 w-4 ml-1" />
+          </Button>
         </div>
       </div>
     </div>

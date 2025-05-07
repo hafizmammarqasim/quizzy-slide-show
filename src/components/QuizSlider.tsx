@@ -58,10 +58,10 @@ const QuizSlider = () => {
           </div>
         </div>
 
-        <div className="relative min-h-[320px] sm:min-h-[400px] mb-6 overflow-hidden">
+        <div className="relative min-h-[510px] sm:min-h-[700px] mb-6 overflow-hidden">
           <Card
             className={cn(
-              "absolute w-full h-full p-4 sm:p-6 flex flex-col transition-all duration-400 ease-in-out",
+              "rounded-lg border bg-card text-card-foreground shadow-sm absolute w-full h-full p-4 sm:p-6 flex flex-col transition-all duration-400 ease-in-out",
               slideDirection === "in"
                 ? "animate-slide-in"
                 : slideDirection === "out"

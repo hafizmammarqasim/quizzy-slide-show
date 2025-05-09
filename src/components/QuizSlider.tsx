@@ -58,10 +58,10 @@ const QuizSlider = () => {
           </div>
         </div>
 
-        <div className="relative min-h-[570px] sm:min-h-[740px] mb-6 overflow-hidden">
+        <div className="relative mb-6 overflow-hidden">
           <Card
             className={cn(
-              "rounded-lg border bg-card text-card-foreground shadow-sm absolute w-full h-full p-4 sm:p-6 flex flex-col transition-all duration-400 ease-in-out",
+              "rounded-lg border bg-card text-card-foreground shadow-sm w-full p-4 sm:p-6 flex flex-col transition-all duration-400 ease-in-out",
               slideDirection === "in"
                 ? "animate-slide-in"
                 : slideDirection === "out"
@@ -73,23 +73,20 @@ const QuizSlider = () => {
               {currentQuestion.category}
             </div>
 
-            <div className="flex-1 flex flex-col overflow-y-auto">
+            <div className="flex-1 flex flex-col">
               <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
                 {currentQuestion.question}
               </h2>
 
               {showAnswer && (
-                <div
-                  className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-y-auto mb-4"
-                  style={{ maxHeight: "670px", minHeight: "350px" }}
-                >
+                <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 mb-4">
                   <p className="text-base sm:text-xl font-medium text-quiz-purple">
                     {currentQuestion.answer}
                   </p>
                 </div>
               )}
 
-              <div className="mt-auto flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+              <div className="mt-4 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                 <Button
                   onClick={toggleAnswer}
                   className="bg-quiz-purple hover:bg-purple-700 text-white"

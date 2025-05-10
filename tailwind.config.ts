@@ -111,15 +111,48 @@ export default {
 						transform: 'translateX(-100%)',
 						opacity: '0'
 					}
+				},
+				'blob': {
+					'0%': {
+						transform: 'translate(0px, 0px) scale(1)'
+					},
+					'33%': {
+						transform: 'translate(30px, -50px) scale(1.1)'
+					},
+					'66%': {
+						transform: 'translate(-20px, 20px) scale(0.9)'
+					},
+					'100%': {
+						transform: 'translate(0px, 0px) scale(1)'
+					}
+				},
+				'shake': {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-4px)' },
+					'20%, 40%, 60%, 80%': { transform: 'translateX(4px)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'slide-in': 'slide-in 0.4s ease-out',
-				'slide-out': 'slide-out 0.4s ease-out'
+				'slide-out': 'slide-out 0.4s ease-out',
+				'blob': 'blob 7s infinite',
+				'shake': 'shake 0.5s infinite',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities, matchUtilities, theme }) {
+			addUtilities({
+				'.animation-delay-2000': {
+					'animation-delay': '2s',
+				},
+				'.animation-delay-4000': {
+					'animation-delay': '4s',
+				},
+			});
+		},
+	],
 } satisfies Config;
